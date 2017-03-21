@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- The file should be used to configure JCommune, like its database access, mail passwords, etc. -->
+<!-- This file should be placed into $TOMCAT_HOME/conf/Catalina/localhost folder and its name should be the same -->
+<!-- as the name of war file. E.g. if the war file is 'jcommune.war', then this file should be 'jcommune.xml' -->
+<Context>
+  <WatchedResource>WEB-INF/web.xml</WatchedResource>
+  <!--database configuration, change user, password and database name if you need-->
+  <Environment name="JCOMMUNE_DB_USER" value="root" type="java.lang.String"/>
+  <Environment name="JCOMMUNE_DB_PASSWORD" value="r" type="java.lang.String"/>
+  <Environment name="JCOMMUNE_DB_URL" type="java.lang.String"
+               value="jdbc:mysql://localhost:3306/jtalks?characterEncoding=UTF-8"/>
+
+  <!-- SMTP server that's used to send mails to the end user (e.g. during registration) -->
+  <!-- Please, don't use these credentials if possible (and don't use it for bad things ;)), -->
+  <!-- but if you want just to quickly try the app or you're a part of dev team, feel free to use these credentials -->
+  <Environment name="SMTP_HOST" value="smtp.gmail.com" type="java.lang.String"/>
+  <!--for smtp default port value is 25, for smtps - 465-->
+  <Environment name="SMTP_PORT" value="465" type="java.lang.String"/>
+  <Environment name="MAIL_USERNAME" value="example.smtp.jtalk@gmail.com" type="java.lang.String"/>
+  <Environment name="MAIL_PASSWORD" value="Jtalk111" type="java.lang.String"/>
+  <Environment name="SSL_ENABLED" value="true" type="java.lang.String"/>
+  <!--This is where you need to put plugins jar files if you need to install any. -->
+  <!--This property is used in jcommune-service\src\main\resources\org\jtalks\jcommune\service\applicationContext-service.xml -->
+  <Environment name="JCOMMUNE_PLUGIN_FOLDER" value="C:\plugins" type="java.lang.String"/>
+
+  <!--You will need this property for changing path to log4j configuration file. -->
+  <!--Example of log4j you can find in jcommune-view\jcommune-web-view\src\main\resources\log4j.xml -->
+  <!--that used by default.  -->
+  <!--<Environment name="JCOMMUNE_LOG4J_CONFIGURATION_FILE" value="/log4j.xml" type="java.lang.String"/> -->
+  
+  <!-- You'll need this configuration to be in $TOMCAT_HOME/conf only if you need to run Poulpe together with JCommune -->
+  <!-- Note, that if you really need this, ehcache configuration should have the same port as Poulpe ehcache configuration. -->
+  <!--Environment name="EH_CACHE_CONFIG" value="file:/home/tomcat/app/tomcat-uat/conf/jcommune.ehcache.xml" type="java.lang.String" /-->
+</Context>

@@ -1,0 +1,9 @@
+org\jtalks\jcommune\plugin\auth\poulpe\dto\Error.class
+org\jtalks\jcommune\plugin\auth\poulpe\dto\User.class
+org\jtalks\jcommune\plugin\auth\poulpe\dto\Authentication.class
+org\jtalks\jcommune\plugin\auth\poulpe\service\PoulpeAuthService.class
+org\jtalks\jcommune\plugin\auth\poulpe\dto\Errors.class
+org\jtalks\jcommune\plugin\auth\poulpe\PoulpeAuthPlugin.class
+org\jtalks\jcommune\plugin\auth\poulpe\dto\Credentials.class
+org\jtalks\jcommune\plugin\auth\poulpe\dto\Profile.class
+org\jtalks\jcommune\plugin\auth\poulpe\dto\PoulpeUser.class

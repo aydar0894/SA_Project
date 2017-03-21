@@ -1,0 +1,102 @@
+#*
+
+Copyright (C) 2011  JTalks.org Team
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+*#
+#macro(comments $post $canLeavePosts $permissionTool $targedId $currentUser $commentsLimit)
+  #set($shownComments = 3)
+    <div id="comments-$post.id" class="comment-list">
+      #foreach($comment in $post.notRemovedComments)
+        #set($commentClass = "")
+        #if($velocityCount != $post.notRemovedComments.size() && $post.notRemovedComments.size() != 0)
+          #set($commentClass = "bordered")
+        #end
+        #if($velocityCount == $shownComments)
+          #set($commentClass = "hiddenBorder")
+        #end
+        #if($velocityCount > $shownComments)
+          <div id="comment-$comment.id" class="togglable $commentClass" style="display: none">
+        #else
+          <div id="comment-$comment.id" class="$commentClass">
+        #end
+          <div class="comment-header">
+            <div class="comment-author pull-left">
+              <a class="no-right-space" href="${request.contextPath}/users/$comment.author.id"
+                 data-original-title="${esc.html(${messages.getString("label.tips.view_profile")})}">
+                ${esc.html($comment.author.username)}
+              </a>,
+            </div>
+            #if(!$currentUser.anonymous)
+              <div class="comment-buttons pull-left">
+                #if(($currentUser.id == $comment.author.id && $permissionTool.hasPermission($targedId.longValue(), "BRANCH","BranchPermission.EDIT_OWN_POSTS"))
+                || ($currentUser.id != $comment.author.id && $permissionTool.hasPermission($targedId.longValue(), "BRANCH","BranchPermission.EDIT_OTHERS_POSTS")))
+                  <a class="comment-button" data-original-title="${messages.getString("label.edit.comment")}">
+                      <i class="icon-pencil" data-comment-id="$comment.id"></i></a>
+                #end
+                #if(($currentUser.id == $comment.author.id && $permissionTool.hasPermission($targedId.longValue(), "BRANCH","BranchPermission.DELETE_OWN_POSTS"))
+                || ($currentUser.id != $comment.author.id && $permissionTool.hasPermission($targedId.longValue(), "BRANCH","BranchPermission.DELETE_OTHERS_POSTS")))
+                  <a class="comment-button delete-comment" data-original-title="${messages.getString("label.delete.comment")}">
+                      <i class="icon-trash" data-comment-id="$comment.id"></i></a>
+                #end
+              </div>
+            #end
+            <div class="comment-date pull-left">
+              ${dateTool.format($comment.creationDate)}
+            </div>
+            <div class="cleared"></div>
+          </div>
+          <div class="comment-body">
+            <span id="body-$comment.id" class="comment-content">${htmlEscaper.process($comment.body)}</span>
+            <div id="edit-$comment.id" class="control-group edit" style="display: none">
+                  <textarea id="editable-$comment.id" name="commentBody" class="comment-textarea edit-comment"
+                             rows="3">${htmlEscaper.process($comment.body)}</textarea>
+                  <div class="comment-buttons-container">
+                      <div class="pull-right">
+                          <a class="btn btn-primary edit-submit" data-comment-id="$comment.id"><jcommune:message>label.save</jcommune:message></a>
+                          <a class="btn edit-cancel" data-comment-id="$comment.id">${messages.getString("label.cancel")}</a>
+                      </div>
+                  </div>
+            </div>
+          </div>
+        </div>
+      #end
+    </div>
+    #if($post.notRemovedComments.size() > $shownComments)
+      <div id="btns-$post.id" tabindex="-1" class="btn-container" style="display: block">
+    #else
+      <div id="btns-$post.id" tabindex="-1" class="btn-container" style="display: none">
+    #end
+        <button data-postId="$post.id" type="button" class="expand togglable" style="display: block"><span>${messages.getString("label.expand.comments")}</span></button>
+        <button data-postId="$post.id" type="button" class="expand togglable" style="display: none"><span>${messages.getString("label.hide.comments")}</span></button>
+      </div>
+
+
+  #if($canLeavePosts && $commentsLimit > $post.notRemovedComments.size())
+    <div id="prompt-$post.id" class="comment-prompt">
+  #else
+    <div id="prompt-$post.id" class="comment-prompt" style="display: none">
+  #end
+      <i class="icon-comment"></i>
+      <span class="comment-prompt-label">${messages.getString("label.add.comment")}</span>
+    </div>
+  <div id="commentForm-$post.id" class="control-group comment-container">
+    <textarea id="commentBody-$post.id" name="commentBody" class="comment-textarea new-comment" placeholder="${messages.getString("label.add.comment")}" rows="3"></textarea>
+    <div class="comment-buttons-container">
+      <div class="pull-right">
+        <a class="btn btn-primary comment-submit" data-post-id="$post.id">${messages.getString("label.comment")}</a>
+        <a class="btn comment-cancel">${messages.getString("label.cancel")}</a>
+      </div>
+    </div>
+  </div>
+#end

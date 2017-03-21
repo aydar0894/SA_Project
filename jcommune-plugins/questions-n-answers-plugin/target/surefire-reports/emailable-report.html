@@ -1,0 +1,343 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>TestNG:  Unit Test</title>
+<style type="text/css">
+table caption,table.info_table,table.param,table.passed,table.failed {margin-bottom:10px;border:1px solid #000099;border-collapse:collapse;empty-cells:show;}
+table.info_table td,table.info_table th,table.param td,table.param th,table.passed td,table.passed th,table.failed td,table.failed th {
+border:1px solid #000099;padding:.25em .5em .25em .5em
+}
+table.param th {vertical-align:bottom}
+td.numi,th.numi,td.numi_attn {
+text-align:right
+}
+tr.total td {font-weight:bold}
+table caption {
+text-align:center;font-weight:bold;
+}
+table.passed tr.stripe td,table tr.passedodd td {background-color: #00AA00;}
+table.passed td,table tr.passedeven td {background-color: #33FF33;}
+table.passed tr.stripe td,table tr.skippedodd td {background-color: #cccccc;}
+table.passed td,table tr.skippedodd td {background-color: #dddddd;}
+table.failed tr.stripe td,table tr.failedodd td,table.param td.numi_attn {background-color: #FF3333;}
+table.failed td,table tr.failedeven td,table.param tr.stripe td.numi_attn {background-color: #DD0000;}
+tr.stripe td,tr.stripe th {background-color: #E6EBF9;}
+p.totop {font-size:85%;text-align:center;border-bottom:2px black solid}
+div.shootout {padding:2em;border:3px #4854A8 solid}
+</style>
+</head>
+<body>
+<table cellspacing=0 cellpadding=0 class="param">
+<tr><th>Test</th><th class="numi">Methods<br/>Passed</th><th class="numi">Scenarios<br/>Passed</th><th class="numi"># skipped</th><th class="numi"># failed</th><th class="numi">Total<br/>Time</th><th class="numi">Included<br/>Groups</th><th class="numi">Excluded<br/>Groups</th></tr>
+<tr><td style="text-align:left;padding-right:2em">Command line test</td><td class="numi">73</td><td class="numi">73</td><td class="numi">0</td><td class="numi">0</td><td class="numi">1.2 seconds</td><td class="numi"></td><td class="numi"></td></tr>
+</table>
+<a id="summary"></a>
+<table cellspacing=0 cellpadding=0 class="passed">
+<tr><th>Class</th><th>Method</th><th># of<br/>Scenarios</th><th>Time<br/>(Msecs)</th></tr>
+<tr><th colspan="4">Command line test &#8212; passed</th></tr>
+<tr class="passedodd"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest<td><a href="#m1"><b>showQuestionShouldThrowExceptionIfQuestionNotFound</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr>
+<tr class="passedeven"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest<td><a href="#m2"><b>configurationWithIncorrectParametersNumberShouldThrowUnexpectedErrorException</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr>
+<tr class="passedodd"><td rowspan="3">org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest<td><a href="#m3"><b>updateAnswerShouldRedirectBackIfValidationFails</b>  </a></td><td class="numi">1</td><td class="numi">16</td></tr><tr class="passedodd"><td><a href="#m4"><b>shouldBeImpossibleToAddAnswerIfAnswersLimitReached</b>  </a></td><td class="numi">1</td><td class="numi">7</td></tr><tr class="passedodd"><td><a href="#m5"><b>canPostShouldReturnSuccessResponseIfLimitOfAnswersNotReached</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr>
+<tr class="passedeven"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.QuestionSubscribersFilterTest<td><a href="#m6"><b>questionSubscribersFilterShouldNotChangeRecepientsIfTopicSubscribersFilters</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr>
+<tr class="passedodd"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest<td><a href="#m7"><b>testGetIcon</b>  </a></td><td class="numi">1</td><td class="numi">28</td></tr>
+<tr class="passedeven"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.QuestionsPluginPermissionTest<td><a href="#m8"><b>testGetName</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr>
+<tr class="passedodd"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest<td><a href="#m9"><b>testCloseQuestionSuccess</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr>
+<tr class="passedeven"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest<td><a href="#m10"><b>getBranchPermissionByMaskShouldReturnNullIfPermissionNotFound</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr>
+<tr class="passedodd"><td rowspan="2">org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest<td><a href="#m11"><b>editQuestionPageShouldThrowExceptionIfQuestionNotFound</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr><tr class="passedodd"><td><a href="#m12"><b>editQuestionPageSuccessTest</b>  </a></td><td class="numi">1</td><td class="numi">10</td></tr>
+<tr class="passedeven"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest<td><a href="#m13"><b>testCreateTopicPermission</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr>
+<tr class="passedodd"><td rowspan="4">org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest<td><a href="#m14"><b>createQuestionSuccessTest</b>  </a></td><td class="numi">1</td><td class="numi">31</td></tr><tr class="passedodd"><td><a href="#m15"><b>closeQuestionShouldThrowExceptionWhenQuestionNotFound</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr><tr class="passedodd"><td><a href="#m16"><b>deleteAnswerPageShouldRedirectToNeighborAnswer</b>  </a></td><td class="numi">1</td><td class="numi">12</td></tr><tr class="passedodd"><td><a href="#m17"><b>updateQuestionSuccessTest</b>  </a></td><td class="numi">1</td><td class="numi">3</td></tr>
+<tr class="passedeven"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest<td><a href="#m18"><b>translateLabelWithExistingTranslation</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr>
+<tr class="passedodd"><td rowspan="2">org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest<td><a href="#m19"><b>addCommentShouldReturnFailResponseIfPostNotFound</b>  </a></td><td class="numi">1</td><td class="numi">3</td></tr><tr class="passedodd"><td><a href="#m20"><b>showQuestionShouldThrowExceptionIfUserRestrictedToViewTopicsInBranch</b>  </a></td><td class="numi">1</td><td class="numi">2</td></tr>
+<tr class="passedeven"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.QuestionSubscribersFilterTest<td><a href="#m21"><b>questionSubscribersFilterShouldNotChangeRecepientsIfBranchSubscribersFilters</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr>
+<tr class="passedodd"><td rowspan="3">org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest<td><a href="#m22"><b>updateQuestionValidationErrorsTest</b>  </a></td><td class="numi">1</td><td class="numi">24</td></tr><tr class="passedodd"><td><a href="#m23"><b>testDeleteCommentSuccess</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr><tr class="passedodd"><td><a href="#m24"><b>editCommentShouldReturnFailResponseIfPostNotFound</b>  </a></td><td class="numi">1</td><td class="numi">2</td></tr>
+<tr class="passedeven"><td rowspan="2">org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest<td><a href="#m25"><b>defaultConfigurationShouldBeAppliedIfConfigureWithNullOrderValue</b>  </a></td><td class="numi">1</td><td class="numi">55</td></tr><tr class="passedeven"><td><a href="#m26"><b>configurationWithIncorrectParameterTypeShouldThrowUnexpectedErrorException</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr>
+<tr class="passedodd"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest<td><a href="#m27"><b>openQuestionShouldThrowExceptionWhenQuestionNotFound</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr>
+<tr class="passedeven"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest<td><a href="#m28"><b>testGetCreateTopicBtnDto</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr>
+<tr class="passedodd"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.QuestionSubscribersFilterTest<td><a href="#m29"><b>questionSubscribersFilterShouldLeaveOnlyPostAuthorInIfPostSubscribersFilters</b>  </a></td><td class="numi">1</td><td class="numi">104</td></tr>
+<tr class="passedeven"><td rowspan="9">org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest<td><a href="#m30"><b>updateQuestionShouldThrowExceptionIfQuestionNotFound</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr><tr class="passedeven"><td><a href="#m31"><b>editAnswerPageShouldThrowExceptionWhenAnswerNotFound</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr><tr class="passedeven"><td><a href="#m32"><b>testEditCommentSuccess</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr><tr class="passedeven"><td><a href="#m33"><b>showNewQuestionPageTest</b>  </a></td><td class="numi">1</td><td class="numi">9</td></tr><tr class="passedeven"><td><a href="#m34"><b>getIconShouldSetNotModifiedStatusIfRequestHaveIfModifiedSinceHeader</b>  </a></td><td class="numi">1</td><td class="numi">2</td></tr><tr class="passedeven"><td><a href="#m35"><b>shouldBeImpossibleToAddCommentIfCommentsLimitReached</b>  </a></td><td class="numi">1</td><td class="numi">2</td></tr><tr class="passedeven"><td><a href="#m36"><b>createAnswerShouldUpdateAnswerIfValidationSuccess</b>  </a></td><td class="numi">1</td><td class="numi">6</td></tr><tr class="passedeven"><td><a href="#m37"><b>createAnswerShouldRedirectBackIfValidationFails</b>  </a></td><td class="numi">1</td><td class="numi">15</td></tr><tr class="passedeven"><td><a href="#m38"><b>updateAnswerShouldUpdateAnswerIfValidationSuccess</b>  </a></td><td class="numi">1</td><td class="numi">2</td></tr>
+<tr class="passedodd"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest<td><a href="#m39"><b>getTopicTypeTest</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr>
+<tr class="passedeven"><td rowspan="4">org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest<td><a href="#m40"><b>showNewQuestionPageShouldThrowExceptionIfBranchNotFound</b>  </a></td><td class="numi">1</td><td class="numi">16</td></tr><tr class="passedeven"><td><a href="#m41"><b>deleteAnswerPageShouldThrowExceptionWhenTopicNotFound</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr><tr class="passedeven"><td><a href="#m42"><b>showQuestionSuccessTest</b>  </a></td><td class="numi">1</td><td class="numi">6</td></tr><tr class="passedeven"><td><a href="#m43"><b>testAddCommentSuccess</b>  </a></td><td class="numi">1</td><td class="numi">2</td></tr>
+<tr class="passedodd"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.QuestionsPluginPermissionTest<td><a href="#m44"><b>findByMaskShouldReturnCorrectPermission</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr>
+<tr class="passedeven"><td rowspan="2">org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest<td><a href="#m45"><b>editAnswerPageShouldRenderThePageIfAnswerIdIsCorrect</b>  </a></td><td class="numi">1</td><td class="numi">19</td></tr><tr class="passedeven"><td><a href="#m46"><b>updateAnswerPageShouldThrowExceptionWhenAnswerNotFound</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr>
+<tr class="passedodd"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest<td><a href="#m47"><b>getBranchPermissionByNameShouldReturnNullIfPermissionNotFound</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr>
+<tr class="passedeven"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.QuestionsPluginPermissionTest<td><a href="#m48"><b>testNoIdenticalConstants</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr>
+<tr class="passedodd"><td rowspan="2">org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest<td><a href="#m49"><b>testDeleteCommentShouldReturnFailResponseIfCommentNotFound</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr><tr class="passedodd"><td><a href="#m50"><b>testOpenQuestionSuccess</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr>
+<tr class="passedeven"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.QuestionsPluginPermissionTest<td><a href="#m51"><b>findByMaskShouldReturnNullIfPermissionNotFound</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr>
+<tr class="passedodd"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest<td><a href="#m52"><b>getBranchPermissionByMaskShouldReturnCorrectPermission</b>  </a></td><td class="numi">1</td><td class="numi">2</td></tr>
+<tr class="passedeven"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest<td><a href="#m53"><b>createAnswerMustReturnDraft_ifValidationFails</b>  </a></td><td class="numi">1</td><td class="numi">211</td></tr>
+<tr class="passedodd"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.QuestionSubscribersFilterTest<td><a href="#m54"><b>questionSubscribersFilterShouldNotChangeRecepientsIfPostFomTopicWithOtherType</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr>
+<tr class="passedeven"><td rowspan="2">org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest<td><a href="#m55"><b>canPostShouldThrowExceptionIfTopicNotFound</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr><tr class="passedeven"><td><a href="#m56"><b>addCommentShouldReturnFailResponseIfValidationErrorOccurred</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr>
+<tr class="passedodd"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest<td><a href="#m57"><b>translateLabelWithoutExistingTranslation</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr>
+<tr class="passedeven"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.QuestionsPluginPermissionTest<td><a href="#m58"><b>getPatternShouldReturnNull</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr>
+<tr class="passedodd"><td rowspan="3">org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest<td><a href="#m59"><b>getIconShouldSetNotFoundStatusForIncorrectIconName</b>  </a></td><td class="numi">1</td><td class="numi">38</td></tr><tr class="passedodd"><td><a href="#m60"><b>testDeleteCommentShouldReturnFailResponseIfPostNotFound</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr><tr class="passedodd"><td><a href="#m61"><b>editCommentShouldReturnFailResponseIfValidationErrorOccurred</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr>
+<tr class="passedeven"><td rowspan="4">org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest<td><a href="#m62"><b>getBranchPermissionByNameShouldReturnCorrectPermission</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr><tr class="passedeven"><td><a href="#m63"><b>testGetDefaultConfiguration</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr><tr class="passedeven"><td><a href="#m64"><b>applyConfigurationShouldThrowRuntimeExceptionIfPassedEmptyProperties</b>  </a></td><td class="numi">1</td><td class="numi">5</td></tr><tr class="passedeven"><td><a href="#m65"><b>supportsJCommuneVersionShouldReturnTrue</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr>
+<tr class="passedodd"><td rowspan="1">org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest<td><a href="#m66"><b>createAnswerPageShouldThrowExceptionWhenTopicNotFound</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr>
+<tr class="passedeven"><td rowspan="4">org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest<td><a href="#m67"><b>testGetBranchPermissions</b>  </a></td><td class="numi">1</td><td class="numi">5</td></tr><tr class="passedeven"><td><a href="#m68"><b>testApplyConfiguration</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr><tr class="passedeven"><td><a href="#m69"><b>configurationWithIncorrectParameterShouldThrowUnexpectedErrorException</b>  </a></td><td class="numi">1</td><td class="numi">8</td></tr><tr class="passedeven"><td><a href="#m70"><b>testConfigure</b>  </a></td><td class="numi">1</td><td class="numi">4</td></tr>
+<tr class="passedodd"><td rowspan="3">org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest<td><a href="#m71"><b>createQuestionValidationErrorsTest</b>  </a></td><td class="numi">1</td><td class="numi">9</td></tr><tr class="passedodd"><td><a href="#m72"><b>createQuestionShouldThrowExceptionIfBranchNotFound</b>  </a></td><td class="numi">1</td><td class="numi">12</td></tr><tr class="passedodd"><td><a href="#m73"><b>canPostShouldReturnFailResponseIfLimitOfAnswersNotReached</b>  </a></td><td class="numi">1</td><td class="numi">2</td></tr>
+</table>
+<h1>Command line test</h1>
+<a id="m1"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:showQuestionShouldThrowExceptionIfQuestionNotFound</h2>
+<div style="padding-left:3em">
+<p>null</p>
+org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest.showQuestionShouldThrowExceptionIfQuestionNotFound(QuestionsAndAnswersControllerTest.java:205)
+<br/>35 lines not shown
+</div>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m2"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest:configurationWithIncorrectParametersNumberShouldThrowUnexpectedErrorException</h2>
+<div style="padding-left:3em">
+<p>org.jtalks.jcommune.plugin.api.exceptions.PluginConfigurationException: Can&apos;t apply configuration: incorrect parameters count or order not found</p>
+org.jtalks.jcommune.plugin.api.core.StatefullPlugin.configure(StatefullPlugin.java:63)
+<br/>at org.jtalks.jcommune.plugin.api.core.WebControllerPlugin.configure(WebControllerPlugin.java:33)
+<br/>at org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest.configurationWithIncorrectParametersNumberShouldThrowUnexpectedErrorException(QuestionsAndAnswersPluginTest.java:75)
+<br/>35 lines not shown
+<p>Caused by Can&apos;t apply configuration: incorrect parameters count or order not found</p>
+org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPlugin.applyConfiguration(QuestionsAndAnswersPlugin.java:89)
+<br/>at org.jtalks.jcommune.plugin.api.core.StatefullPlugin.configure(StatefullPlugin.java:52)
+<br/>at org.jtalks.jcommune.plugin.api.core.WebControllerPlugin.configure(WebControllerPlugin.java:33)
+<br/>at org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest.configurationWithIncorrectParametersNumberShouldThrowUnexpectedErrorException(QuestionsAndAnswersPluginTest.java:75)
+<br/>35 lines not shown
+</div>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m3"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:updateAnswerShouldRedirectBackIfValidationFails</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m4"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:shouldBeImpossibleToAddAnswerIfAnswersLimitReached</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m5"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:canPostShouldReturnSuccessResponseIfLimitOfAnswersNotReached</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m6"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionSubscribersFilterTest:questionSubscribersFilterShouldNotChangeRecepientsIfTopicSubscribersFilters</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m7"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:testGetIcon</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m8"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsPluginPermissionTest:testGetName</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m9"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:testCloseQuestionSuccess</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m10"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest:getBranchPermissionByMaskShouldReturnNullIfPermissionNotFound</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m11"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:editQuestionPageShouldThrowExceptionIfQuestionNotFound</h2>
+<div style="padding-left:3em">
+<p>null</p>
+org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest.editQuestionPageShouldThrowExceptionIfQuestionNotFound(QuestionsAndAnswersControllerTest.java:238)
+<br/>35 lines not shown
+</div>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m12"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:editQuestionPageSuccessTest</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m13"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest:testCreateTopicPermission</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m14"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:createQuestionSuccessTest</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m15"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:closeQuestionShouldThrowExceptionWhenQuestionNotFound</h2>
+<div style="padding-left:3em">
+<p>null</p>
+org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest.closeQuestionShouldThrowExceptionWhenQuestionNotFound(QuestionsAndAnswersControllerTest.java:351)
+<br/>35 lines not shown
+</div>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m16"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:deleteAnswerPageShouldRedirectToNeighborAnswer</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m17"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:updateQuestionSuccessTest</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m18"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest:translateLabelWithExistingTranslation</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m19"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:addCommentShouldReturnFailResponseIfPostNotFound</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m20"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:showQuestionShouldThrowExceptionIfUserRestrictedToViewTopicsInBranch</h2>
+<div style="padding-left:3em">
+<p></p>
+org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest.showQuestionShouldThrowExceptionIfUserRestrictedToViewTopicsInBranch(QuestionsAndAnswersControllerTest.java:218)
+<br/>35 lines not shown
+</div>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m21"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionSubscribersFilterTest:questionSubscribersFilterShouldNotChangeRecepientsIfBranchSubscribersFilters</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m22"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:updateQuestionValidationErrorsTest</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m23"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:testDeleteCommentSuccess</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m24"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:editCommentShouldReturnFailResponseIfPostNotFound</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m25"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest:defaultConfigurationShouldBeAppliedIfConfigureWithNullOrderValue</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m26"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest:configurationWithIncorrectParameterTypeShouldThrowUnexpectedErrorException</h2>
+<div style="padding-left:3em">
+<p>java.lang.NumberFormatException: For input string: &quot;string&quot;</p>
+org.jtalks.jcommune.plugin.api.core.StatefullPlugin.configure(StatefullPlugin.java:63)
+<br/>at org.jtalks.jcommune.plugin.api.core.WebControllerPlugin.configure(WebControllerPlugin.java:33)
+<br/>at org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest.configurationWithIncorrectParameterTypeShouldThrowUnexpectedErrorException(QuestionsAndAnswersPluginTest.java:84)
+<br/>35 lines not shown
+<p>Caused by For input string: &quot;string&quot;</p>
+java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+<br/>at java.lang.Integer.parseInt(Integer.java:492)
+<br/>at java.lang.Integer.parseInt(Integer.java:527)
+<br/>at org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPlugin.applyConfiguration(QuestionsAndAnswersPlugin.java:84)
+<br/>at org.jtalks.jcommune.plugin.api.core.StatefullPlugin.configure(StatefullPlugin.java:52)
+<br/>at org.jtalks.jcommune.plugin.api.core.WebControllerPlugin.configure(WebControllerPlugin.java:33)
+<br/>at org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest.configurationWithIncorrectParameterTypeShouldThrowUnexpectedErrorException(QuestionsAndAnswersPluginTest.java:84)
+<br/>35 lines not shown
+</div>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m27"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:openQuestionShouldThrowExceptionWhenQuestionNotFound</h2>
+<div style="padding-left:3em">
+<p>null</p>
+org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest.openQuestionShouldThrowExceptionWhenQuestionNotFound(QuestionsAndAnswersControllerTest.java:330)
+<br/>35 lines not shown
+</div>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m28"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest:testGetCreateTopicBtnDto</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m29"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionSubscribersFilterTest:questionSubscribersFilterShouldLeaveOnlyPostAuthorInIfPostSubscribersFilters</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m30"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:updateQuestionShouldThrowExceptionIfQuestionNotFound</h2>
+<div style="padding-left:3em">
+<p>null</p>
+org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest.updateQuestionShouldThrowExceptionIfQuestionNotFound(QuestionsAndAnswersControllerTest.java:279)
+<br/>35 lines not shown
+</div>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m31"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:editAnswerPageShouldThrowExceptionWhenAnswerNotFound</h2>
+<div style="padding-left:3em">
+<p>null</p>
+org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest.editAnswerPageShouldThrowExceptionWhenAnswerNotFound(QuestionsAndAnswersControllerTest.java:359)
+<br/>35 lines not shown
+</div>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m32"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:testEditCommentSuccess</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m33"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:showNewQuestionPageTest</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m34"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:getIconShouldSetNotModifiedStatusIfRequestHaveIfModifiedSinceHeader</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m35"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:shouldBeImpossibleToAddCommentIfCommentsLimitReached</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m36"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:createAnswerShouldUpdateAnswerIfValidationSuccess</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m37"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:createAnswerShouldRedirectBackIfValidationFails</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m38"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:updateAnswerShouldUpdateAnswerIfValidationSuccess</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m39"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest:getTopicTypeTest</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m40"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:showNewQuestionPageShouldThrowExceptionIfBranchNotFound</h2>
+<div style="padding-left:3em">
+<p>null</p>
+org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest.showNewQuestionPageShouldThrowExceptionIfBranchNotFound(QuestionsAndAnswersControllerTest.java:135)
+<br/>35 lines not shown
+</div>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m41"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:deleteAnswerPageShouldThrowExceptionWhenTopicNotFound</h2>
+<div style="padding-left:3em">
+<p>null</p>
+org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest.deleteAnswerPageShouldThrowExceptionWhenTopicNotFound(QuestionsAndAnswersControllerTest.java:491)
+<br/>35 lines not shown
+</div>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m42"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:showQuestionSuccessTest</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m43"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:testAddCommentSuccess</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m44"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsPluginPermissionTest:findByMaskShouldReturnCorrectPermission</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m45"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:editAnswerPageShouldRenderThePageIfAnswerIdIsCorrect</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m46"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:updateAnswerPageShouldThrowExceptionWhenAnswerNotFound</h2>
+<div style="padding-left:3em">
+<p>null</p>
+org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest.updateAnswerPageShouldThrowExceptionWhenAnswerNotFound(QuestionsAndAnswersControllerTest.java:402)
+<br/>35 lines not shown
+</div>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m47"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest:getBranchPermissionByNameShouldReturnNullIfPermissionNotFound</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m48"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsPluginPermissionTest:testNoIdenticalConstants</h2>
+<table cellspacing=0 cellpadding=0 class="param">
+<tr><th style="padding-left:1em;padding-right:1em">Parameter #1</th></tr>
+<tr><td style="padding-left:.5em;padding-right:2em">[VIEW_TOPICS, MOVE_TOPICS, CLOSE_TOPICS, CREATE_POSTS, DELETE_OWN_POSTS, DELETE_OTHERS_POSTS, EDIT_OWN_POSTS, EDIT_OTHERS_POSTS, CREATE_ANNOUNCEMENTS, CREATE_STICKED_TOPICS, CREATE_CODE_REVIEW, LEAVE_COMMENTS_IN_CODE_REVIEW, ADMIN, READ, WRITE, SEND_PRIVATE_MESSAGES, CREATE_FORUM_FAQ, EDIT_OWN_PROFILE, EDIT_OTHERS_PROFILE, CREATE_QUESTIONS]</td>
+</tr>
+</table>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m49"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:testDeleteCommentShouldReturnFailResponseIfCommentNotFound</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m50"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:testOpenQuestionSuccess</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m51"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsPluginPermissionTest:findByMaskShouldReturnNullIfPermissionNotFound</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m52"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest:getBranchPermissionByMaskShouldReturnCorrectPermission</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m53"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:createAnswerMustReturnDraft_ifValidationFails</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m54"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionSubscribersFilterTest:questionSubscribersFilterShouldNotChangeRecepientsIfPostFomTopicWithOtherType</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m55"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:canPostShouldThrowExceptionIfTopicNotFound</h2>
+<div style="padding-left:3em">
+<p>null</p>
+org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest.canPostShouldThrowExceptionIfTopicNotFound(QuestionsAndAnswersControllerTest.java:690)
+<br/>35 lines not shown
+</div>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m56"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:addCommentShouldReturnFailResponseIfValidationErrorOccurred</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m57"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest:translateLabelWithoutExistingTranslation</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m58"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsPluginPermissionTest:getPatternShouldReturnNull</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m59"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:getIconShouldSetNotFoundStatusForIncorrectIconName</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m60"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:testDeleteCommentShouldReturnFailResponseIfPostNotFound</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m61"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:editCommentShouldReturnFailResponseIfValidationErrorOccurred</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m62"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest:getBranchPermissionByNameShouldReturnCorrectPermission</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m63"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest:testGetDefaultConfiguration</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m64"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest:applyConfigurationShouldThrowRuntimeExceptionIfPassedEmptyProperties</h2>
+<div style="padding-left:3em">
+<p>Can&apos;t apply configuration: incorrect parameters count or order not found</p>
+org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPlugin.applyConfiguration(QuestionsAndAnswersPlugin.java:89)
+<br/>at org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest.applyConfigurationShouldThrowRuntimeExceptionIfPassedEmptyProperties(QuestionsAndAnswersPluginTest.java:112)
+<br/>35 lines not shown
+</div>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m65"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest:supportsJCommuneVersionShouldReturnTrue</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m66"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:createAnswerPageShouldThrowExceptionWhenTopicNotFound</h2>
+<div style="padding-left:3em">
+<p>null</p>
+org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest.createAnswerPageShouldThrowExceptionWhenTopicNotFound(QuestionsAndAnswersControllerTest.java:441)
+<br/>35 lines not shown
+</div>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m67"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest:testGetBranchPermissions</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m68"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest:testApplyConfiguration</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m69"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest:configurationWithIncorrectParameterShouldThrowUnexpectedErrorException</h2>
+<div style="padding-left:3em">
+<p>org.jtalks.jcommune.plugin.api.exceptions.PluginConfigurationException: Can&apos;t apply configuration: incorrect parameters count or order not found</p>
+org.jtalks.jcommune.plugin.api.core.StatefullPlugin.configure(StatefullPlugin.java:63)
+<br/>at org.jtalks.jcommune.plugin.api.core.WebControllerPlugin.configure(WebControllerPlugin.java:33)
+<br/>at org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest.configurationWithIncorrectParameterShouldThrowUnexpectedErrorException(QuestionsAndAnswersPluginTest.java:64)
+<br/>35 lines not shown
+<p>Caused by Can&apos;t apply configuration: incorrect parameters count or order not found</p>
+org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPlugin.applyConfiguration(QuestionsAndAnswersPlugin.java:89)
+<br/>at org.jtalks.jcommune.plugin.api.core.StatefullPlugin.configure(StatefullPlugin.java:52)
+<br/>at org.jtalks.jcommune.plugin.api.core.WebControllerPlugin.configure(WebControllerPlugin.java:33)
+<br/>at org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest.configurationWithIncorrectParameterShouldThrowUnexpectedErrorException(QuestionsAndAnswersPluginTest.java:64)
+<br/>35 lines not shown
+</div>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m70"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.QuestionsAndAnswersPluginTest:testConfigure</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m71"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:createQuestionValidationErrorsTest</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m72"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:createQuestionShouldThrowExceptionIfBranchNotFound</h2>
+<div style="padding-left:3em">
+<p>null</p>
+org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest.createQuestionShouldThrowExceptionIfBranchNotFound(QuestionsAndAnswersControllerTest.java:182)
+<br/>35 lines not shown
+</div>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m73"></a><h2>org.jtalks.jcommune.plugin.questionsandanswers.controller.QuestionsAndAnswersControllerTest:canPostShouldReturnFailResponseIfLimitOfAnswersNotReached</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+</body></html>

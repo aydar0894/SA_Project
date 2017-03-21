@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (C) 2011  JTalks.org Team
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation; either
+    version 2.1 of the License, or (at your option) any later version.
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+-->
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+        version="2.0">
+
+  <description>General purposes tag library</description>
+  <tlib-version>1.0</tlib-version>
+  <short-name>jtalks</short-name>
+  <uri>http://www.jtalks.org/tags</uri>
+
+  <tag>
+    <name>ifContains</name>
+    <tag-class>org.jtalks.jcommune.web.tags.ContainsSupport</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+      <name>collection</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.util.Collection</type>
+    </attribute>
+    <attribute>
+      <name>object</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.Object</type>
+    </attribute>
+    <attribute>
+      <name>successMessage</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <name>failMessage</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+    </attribute>
+  </tag>
+
+  <tag>
+    <description>
+      Formats a Joda Date with a fixed pattern and assuming timezone offset
+    </description>
+    <name>format</name>
+    <tag-class>org.jtalks.jcommune.web.tags.FormattedDate</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+      <name>value</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>style</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>pattern</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>dateTimeZone</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>var</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description>
+        Scope of var.
+      </description>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>locale</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>bb2html</name>
+    <tag-class>org.jtalks.jcommune.web.tags.ConverterBB2HTML</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+      <name>bbCode</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>prepareLink</name>
+    <tag-class>org.jtalks.jcommune.web.tags.LinksPreparer</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+      <name>incomingLink</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+    <description>
+      Allows inclusion of a tag body if the current Authentication
+      has one of the specified permissions to the presented
+      domain object instance.
+    </description>
+    <name>hasPermission</name>
+    <tag-class>org.jtalks.jcommune.web.tags.HasPermission</tag-class>
+    <body-content>scriptless</body-content>
+    <attribute>
+      <description>
+        Simple name of permission (enum value)
+      </description>
+      <name>permission</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description>
+        Identifier of object to check permission
+      </description>
+      <name>targetId</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description>
+        Type of object (e.g. BRANCH)
+      </description>
+      <name>targetType</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+    <description>URL tag for the link to page of the pagination control.
+      Tag based on the JSTL spring:url tag.  This variant is fully
+      backwards compatible with the spring tag.  Enhancements include attribute for the page and support
+      for URL parameters in the Map.</description>
+    <name>pageUrl</name>
+    <tag-class>org.jtalks.jcommune.web.tags.PaginationLinkUrl</tag-class>
+    <body-content>JSP</body-content>
+    <attribute>
+      <description>The URL to build.  This value can include template place holders
+        that are replaced with the URL encoded value of the named parameter.  Parameters
+        must be defined using the param tag inside the body of this tag.</description>
+      <name>value</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description>Specifies a remote application context path.  The default is the
+        current application context path.</description>
+      <name>context</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description>The name of the variable to export the URL value to.</description>
+      <name>var</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description>The scope for the var.  'application', 'session', 'request' and
+        'page' scopes are supported.  Defaults to page scope.  This attribute has no
+        effect unless the var attribute is also defined.</description>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description>Set HTML escaping for this tag, as a boolean value. Overrides the
+        default HTML escaping setting for the current page.</description>
+      <name>htmlEscape</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description>Set JavaScript escaping for this tag, as a boolean value.
+        Default is false.</description>
+      <name>javaScriptEscape</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description>Map with parameters for the url: key - parameter name, value - parameter value</description>
+      <name>params</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description>Page parameter for the url</description>
+      <name>page</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag-file>
+    <name>bbeditor</name>
+    <path>/WEB-INF/tags/bbeditor.tag</path>
+  </tag-file>
+
+  <tag-file>
+    <name>breadcrumb</name>
+    <path>/WEB-INF/tags/breadcrumb.tag</path>
+  </tag-file>
+
+  <tag-file>
+    <name>banner</name>
+    <path>/WEB-INF/tags/banner.tag</path>
+  </tag-file>
+
+  <tag-file>
+    <name>pagination</name>
+    <path>/WEB-INF/tags/pagination.tag</path>
+  </tag-file>
+
+  <tag-file>
+    <name>moderators</name>
+    <path>/WEB-INF/tags/moderators.tag</path>
+  </tag-file>
+
+  <tag-file>
+    <name>users</name>
+    <path>/WEB-INF/tags/users.tag</path>
+  </tag-file>
+
+  <tag-file>
+    <name>postContent</name>
+    <path>/WEB-INF/tags/postContent.tag</path>
+  </tag-file>
+
+  <tag-file>
+    <name>postFooterContent</name>
+    <path>/WEB-INF/tags/postFooterContent.tag</path>
+  </tag-file>
+
+  <tag-file>
+    <name>isSectionVisible</name>
+    <path>/WEB-INF/tags/isSectionVisible.tag</path>
+  </tag-file>
+
+  <tag-file>
+    <name>topicIconSmall</name>
+    <path>/WEB-INF/tags/topicIconSmall.tag</path>
+  </tag-file>
+
+  <tag-file>
+    <name>topicControls</name>
+    <path>/WEB-INF/tags/topicControls.tag</path>
+  </tag-file>
+  <tag-file>
+    <name>topicList</name>
+    <path>/WEB-INF/tags/topicList.tag</path>
+  </tag-file>
+
+  <function>
+      <description>The function checks - there is a user or not.</description>
+      <name>isExists</name>
+      <function-class>org.jtalks.jcommune.web.tags.UsersUtil</function-class>
+      <function-signature>boolean isExists(org.jtalks.jcommune.model.entity.JCUser)</function-signature>
+  </function>
+
+</taglib>

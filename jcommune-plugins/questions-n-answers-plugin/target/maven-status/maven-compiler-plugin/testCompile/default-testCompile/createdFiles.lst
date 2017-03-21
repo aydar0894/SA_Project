@@ -1,0 +1,4 @@
+org\jtalks\jcommune\plugin\questionsandanswers\QuestionsAndAnswersPluginTest.class
+org\jtalks\jcommune\plugin\questionsandanswers\QuestionsPluginPermissionTest.class
+org\jtalks\jcommune\plugin\questionsandanswers\controller\QuestionsAndAnswersControllerTest.class
+org\jtalks\jcommune\plugin\questionsandanswers\QuestionSubscribersFilterTest.class

@@ -1,0 +1,3 @@
+org\jtalks\jcommune\plugin\auth\poulpe\service\PoulpeAuthServiceIntegrationTest.class
+org\jtalks\jcommune\plugin\auth\poulpe\PoulpeAuthPluginTest.class
+org\jtalks\jcommune\plugin\auth\poulpe\service\PoulpeAuthServiceTest.class

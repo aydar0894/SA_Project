@@ -1,0 +1,7 @@
+org\jtalks\jcommune\plugin\questionsandanswers\QuestionsPluginBranchPermission.class
+org\jtalks\jcommune\plugin\questionsandanswers\QuestionsAndAnswersPlugin.class
+org\jtalks\jcommune\plugin\questionsandanswers\controller\QuestionsAndAnswersController.class
+org\jtalks\jcommune\plugin\questionsandanswers\dto\CommentDto.class
+org\jtalks\jcommune\plugin\questionsandanswers\controller\QuestionsAndAnswersController$1.class
+org\jtalks\jcommune\plugin\questionsandanswers\QuestionSubscribersFilter.class
+org\jtalks\jcommune\plugin\questionsandanswers\controller\QuestionsAndAnswersController$PostComparator.class

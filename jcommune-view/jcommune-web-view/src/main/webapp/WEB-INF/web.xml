@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (C) 2011  JTalks.org Team
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation; either
+    version 2.1 of the License, or (at your option) any later version.
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+-->
+<web-app id="jt-forum" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+         http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath:org/jtalks/jcommune/model/entity/applicationContext-dao.xml
+            classpath:org/jtalks/jcommune/model/entity/applicationContext-properties.xml
+            classpath:org/jtalks/jcommune/service/applicationContext-service.xml
+            classpath:org/jtalks/jcommune/service/email-context.xml
+            classpath:org/jtalks/jcommune/service/security-service-context.xml
+            classpath:org/jtalks/jcommune/web/applicationContext-controller.xml
+            /WEB-INF/security-context.xml
+        </param-value>
+    </context-param>
+
+    <servlet>
+        <servlet-name>spring-dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+    <!-- Servlet for JETM results HTTP-console -->
+    <servlet-name>performanceMonitor</servlet-name>
+        <servlet-class>org.jtalks.jcommune.web.controller.JetmHttpConsoleServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>spring-dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>performanceMonitor</servlet-name>
+        <url-pattern>/performance/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- filter helps to remove whitespaces in resulting html pages -->
+    <filter>
+        <filter-name>trimFilter</filter-name>
+        <filter-class>org.jtalks.jcommune.web.filters.TrimFilter</filter-class>
+        <init-param>
+            <param-name>excludePatterns</param-name>
+            <param-value>(^.*/resources/.*|^.*/users/.*/security)</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>trimFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>encoding-filter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encoding-filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>hibernateSessionInViewFilter</filter-name>
+        <filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>hibernateSessionInViewFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>sitemesh</filter-name>
+        <filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>sitemesh</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--Needed to allow plugins to use messages from forum properties
+    Applied only for text/html response content type-->
+    <filter>
+      <filter-name>tagFilter</filter-name>
+      <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+      <filter-name>tagFilter</filter-name>
+      <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--We need this filter as we use HTTP DELETE to delete posts & topics-->
+    <filter>
+        <filter-name>httpMethodFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>httpMethodFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- We need this filter to configure logging -->
+    <filter>
+        <filter-name>loggingConfigurationFilter</filter-name>
+        <filter-class>
+            org.springframework.web.filter.DelegatingFilterProxy
+        </filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>loggingConfigurationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--Process head request -->
+    <filter>
+        <filter-name>headRequest</filter-name>
+        <filter-class>org.jtalks.jcommune.web.filters.HeadRequestTypeFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>headRequest</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <listener>
+        <listener-class>org.jtalks.jcommune.web.listeners.LoggerInitializationListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.jtalks.jcommune.web.listeners.SessionStatisticListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.jtalks.jcommune.web.listeners.SessionSetupListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.jtalks.jcommune.web.listeners.AppPropertySetupListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.springframework.web.util.HttpSessionMutexListener</listener-class>
+    </listener>
+
+    <error-page>
+        <error-code>400</error-code>
+        <location>/errors/400</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/errors/403</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/errors/404</location>
+    </error-page>
+    <error-page>
+        <error-code>405</error-code>
+        <location>/errors/405</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/errors/500</location>
+    </error-page>
+    <error-page>
+        <error-code>501</error-code>
+        <location>/errors/501</location>
+    </error-page>
+    <error-page>
+        <exception-type>org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationException
+        </exception-type>
+        <location>/exception/rememberMe</location>
+    </error-page>
+</web-app>
+

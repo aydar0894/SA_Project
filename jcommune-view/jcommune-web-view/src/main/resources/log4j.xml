@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+
+    Copyright (C) 2011  JTalks.org Team
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation; either
+    version 2.1 of the License, or (at your option) any later version.
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+-->
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration debug="false" xmlns:log4j="http://jakarta.apache.org/log4j/">
+  <!--
+  Note, that we don't include Console Appender because all console info is written into catalina.out. This is harmful
+  because that file gets bigger and bigger and if we don't keep an eye on it it will eat all disk space.
+  Additional justification to not have console appender is that we have several apps that potentially can write into
+  console and thus it can get messed up if all the logs for these apps are kept in a single file.
+
+  There is a downside - you don't see app logs in your IDE when your start the app. This can be overcome, e.g. here is
+  an instruction for IntelliJ: http://www.jetbrains.com/idea/webhelp/setting-log-options.html
+  Eclipse/NetBeans gurus please put here a description on how your IDEs handle this.
+  -->
+  <appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
+    <param name="File" value="${catalina.home}/logs/jcommune.log"/>
+    <param name="MaxFileSize" value="40MB"/>
+    <param name="Encoding" value="UTF-8"/>
+    <!--How many old log files to keep-->
+    <param name="MaxBackupIndex" value="15"/>
+    <layout class="org.apache.log4j.EnhancedPatternLayout">
+      <!--
+      The username is set by MDC feature in a web filter. Therefore we have username logged even in guts
+      of Spring or Hibernate. More info on MDC: http://logback.qos.ch/manual/mdc.html
+      -->
+      <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} [%-5p][%-16.16t][%X{userName}][%30c] - %m%n"/>
+    </layout>
+  </appender>
+
+  <logger name="org.jtalks">
+    <!-- We still from time to time have unexpected behavior, so let's keep it DEBUG. The amount of logs is small anyway -->
+    <level value="DEBUG"/>
+  </logger>
+  <root>
+    <priority value="WARN"/>
+    <appender-ref ref="fileAppender"/>
+  </root>
+
+</log4j:configuration>

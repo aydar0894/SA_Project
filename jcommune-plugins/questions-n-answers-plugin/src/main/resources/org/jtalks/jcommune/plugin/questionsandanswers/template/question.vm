@@ -1,0 +1,300 @@
+#*
+
+Copyright (C) 2011  JTalks.org Team
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+*#
+#parse("org/jtalks/jcommune/jcommune-plugin-api/web/templates/topicActions.vm")
+#parse("org/jtalks/jcommune/jcommune-plugin-api/web/templates/breadcrumb.vm")
+#parse("org/jtalks/jcommune/plugin/questionsandanswers/template/comments.vm")
+#parse("org/jtalks/jcommune/jcommune-plugin-api/web/templates/bbeditor.vm")
+#parse("org/jtalks/jcommune/jcommune-plugin-api/web/templates/userStats.vm")
+
+#macro(initAnswerConfirmationParams $confirmAnswerTitle $confirmAnswerContent)
+  #set($formVisibilityClass = "hide-element")
+  #set($antiMultianswerBtnVisibilityClass = "")
+  <script>
+    var confirmAnswerTitle = "$confirmAnswerTitle";
+    var confirmAnswerContent = "$confirmAnswerContent";
+  </script>
+#end
+
+
+<head>
+  #set($targedId = ${question.branch.id})
+  #set($canLeavePosts=false)
+  #if((!${question.closed} || ${permissionTool.hasPermission($targedId.longValue(),"BRANCH","BranchPermission.CLOSE_TOPICS")})
+  && ${permissionTool.hasPermission($targedId.longValue(),"BRANCH","BranchPermission.CREATE_POSTS")})
+    #set($canLeavePosts=true)
+  #end
+  <script>
+    #if(!${currentUser.anonymous})
+      var labelVoteErrorNoPermissions = "${messages.getString("label.vote.error.no.permissions")}";
+    #else
+      var labelVoteErrorNoPermissions = "${messages.getString("label.vote.error.not.registered")}";
+    #end
+    var labelVoteErrorOwnPost = "${messages.getString("label.vote.error.own.post")}";
+    var labelAddCommentPostNotFound = "${messages.getString("label.comment.add.error.not.found")}";
+    var labelEditCommentNotFound = "${messages.getString("label.comment.edit.error.not.found")}";
+    var labelDeleteCommentNotFound = "${messages.getString("label.comment.remove.error.not.found")}";
+    var labelProfileTip = "${messages.getString("label.tips.view_profile")}";
+    var labelEditCommentTip = "${messages.getString("label.edit.comment")}";
+    var labelDeleteCommentTip = "${messages.getString("label.delete.comment")}";
+    var labelCancel = "${messages.getString("label.cancel")}";
+    var branchId = ${question.branch.id};
+    var canEditNewlyAddedComments = ${permissionTool.hasPermission($targedId.longValue(),"BRANCH","BranchPermission.EDIT_OWN_POSTS")};
+    var canDeleteNewlyAddedComments = ${permissionTool.hasPermission($targedId.longValue(),"BRANCH","BranchPermission.DELETE_OWN_POSTS")};
+    var maxCommentNumber = ${postLimit};
+    var labelLimitOfCommentsReached = "${messages.getString("label.comment.limit.reached")}";
+    var labelLimitOfAnswersReached = "${messages.getString("label.answer.limit.reached")}";
+    var subscribed = ${question.subscribers.contains(${currentUser})};
+    var autosubscribeEnabled = ${currentUser.autosubscribe}
+  </script>
+
+  #if ($canLeavePosts)
+    ## determines if the post editor is show or not - depends on whether user has already left some posts
+    ## Also we shouldn't hide the area if there is some text already (draft or validation error returned after
+    ## submitting invalid form)
+    #set($formVisibilityClass = "")
+    ## determines if the button that prevents users to leave multiple answers is shown
+    #set($antiMultianswerBtnVisibilityClass = "hide-element")
+    #if(${question.topicStarter.id} == ${currentUser.id} && !${postDto.bodyText})
+      #initAnswerConfirmationParams(${messages.getString("label.confirm.self.answer.title")} ${messages.getString("label.confirm.self.answer.message")})
+    #elseif(${question.getUserPostCount(${currentUser})} > 0 && !${postDto.bodyText})
+      #initAnswerConfirmationParams(${messages.getString("label.confirm.multi.answer.title")} ${messages.getString("label.confirm.multi.answer.message")})
+    #end
+  #end
+  <style>#include("org/jtalks/jcommune/plugin/questionsandanswers/template/css/question.css")</style>
+  <script>#include("org/jtalks/jcommune/plugin/questionsandanswers/template/js/question.js")</script>
+  <title>
+    ${propertiesHolder.allPagesTitlePrefix}
+    ${esc.html(${question.title})}
+  </title>
+</head>
+<body>
+
+<div class="container">
+  <div id="branch-header">
+    <h1>
+      <a class="invisible-link" href="${request.contextPath}/topics/question/${question.id}">${esc.html(${question.title})}</a>
+    </h1>
+
+    <div id="right-block">
+      #if(!${currentUser.anonymous})
+        <span id="subscribe">
+          <i class="icon-star"></i>
+          #if(${question.subscribers.contains(${currentUser})})
+            <a id="subscription" class="button top_button"
+               href="${request.contextPath}/topics/${question.id}/unsubscribe"
+               title="${messages.getString("label.unsubscribe.tooltip")}">
+              ${esc.html(${messages.getString("label.unsubscribe")})}
+            </a>
+          #else
+            <a id="subscription" class="button top_button"
+               href="${request.contextPath}/topics/${question.id}/subscribe"
+               title='${messages.getString("label.subscribe.tooltip")}'>
+              $esc.html(${messages.getString("label.subscribe")})
+            </a>
+          #end
+        </span>
+      #end
+    </div>
+    <span class="inline-block"></span>
+  </div>
+  #breadcrumb(${breadcrumbList})
+  #topicActions($targedId ${request} ${question} ${permissionTool})
+
+  <div>
+    #set($labelAnswerType = "label.answer")
+    #if(!${currentUser.anonymous} && ${question.topicStarter.id} == ${currentUser.id})
+      #set($labelAnswerType = "label.own.answer")
+    #end
+    #set($answersCount = ${postPage.getContent().size()} - 1)
+    #foreach(${post} in ${postPage.content})
+      #set($voteUpClass = "vote-up-unpressed")
+      #set($votedDownClass = "vote-down-unpressed")
+      #if(${post.isVotedUpBy(${currentUser})})
+        #set($voteUpClass = "vote-up-pressed")
+      #elseif(${post.isVotedDownBy(${currentUser})})
+        #set($votedDownClass = "vote-down-pressed")
+      #end
+      #set($rating = ${post.rating})
+      #set($voteResultClass = "")
+      #if($rating > 0)
+        #set($voteResultClass = "positive")
+      #elseif($rating < 0)
+        #set($voteResultClass = "negative")
+      #end
+      #set($own = false)
+      #if(!${currentUser.anonymous} && ${post.userCreated.id} == ${currentUser.id})
+        #set($own = true)
+      #end
+      #set($isFirstPost = false)
+      #if($velocityCount == 1)
+        #set($isFirstPost = true)
+      #end
+      #set($postClass = "")
+      #set($postEditUrl = "")
+      #set($postDeleteUrl = "")
+      #macro(voteTooltips $voteUpTooltipText $voteDownTooltipText)
+        #if(!${currentUser.anonymous})
+          #set($voteUpTooltip = $voteUpTooltipText)
+          #set($voteDownTooltip = $voteDownTooltipText)
+        #else
+          #set($voteUpTooltip = $messages.getString('label.vote.error.not.registered'))
+          #set($voteDownTooltip = $messages.getString('label.vote.error.not.registered'))
+        #end
+      #end
+      #if($isFirstPost)
+        #set($postClass = "question")
+        #set($postEditUrl = "${request.contextPath}/topics/question/${question.id.longValue()}/edit")
+        #set($postDeleteUrl = "${request.contextPath}/topics/${question.id.longValue()}")
+        #voteTooltips($messages.getString('label.question.voteUp.tooltip'),
+                      $messages.getString('label.question.voteDown.tooltip'))
+      #else
+        #set($postEditUrl = "${request.contextPath}/topics/question/post/${post.id.longValue()}/edit")
+        #set($postDeleteUrl = "${request.contextPath}/topics/question/post/${post.id.longValue()}")
+        #set($postClass = "answer")
+        #voteTooltips($messages.getString('label.answer.voteUp.tooltip'),
+                      $messages.getString('label.answer.voteDown.tooltip'))
+      #end
+      #if($velocityCount == 2)
+        <div id="answerCounter">
+          <h3>${esc.html(${messages.getString("label.answers.count")})} $answersCount</h3>
+        </div>
+      #end
+      <div class="post $postClass">
+        <div class="anchor">
+          <a id="${post.getId()}">anchor</a>
+        </div>
+        <div>
+          <div class="question-left-panel pull-left">
+            <div class="thumbnail wraptocenter">
+              <img src="${request.contextPath}/users/${post.userCreated.id}/avatar?version=${post.userCreated.version}" alt=""/>
+            </div>
+            <div class="question-votes">
+              <div id="${post.id}-up" class="vote-up $voteUpClass"
+                   data-toggle="tooltip" title="${esc.html($voteUpTooltip)}"></div>
+              <span id="${post.id}-rating" class="vote-result $voteResultClass"
+                    data-viewer-is-post-owner="$own">$rating</span>
+              <div id="${post.id}-down" class="vote-down $votedDownClass" data-toggle="tooltip"
+                   title="${esc.html($voteDownTooltip)}"></div>
+              <div id="error-message-${post.id}" class="alert vote-error-popup alert-error"
+                style="display: none;"><span></span></div>
+            </div>
+          </div>
+
+          <div class="question-right-panel">
+            <div class="question-header">
+
+              <div class="question-author">
+                <a class="post-userinfo-username"
+                   href="${request.contextPath}/users/${post.userCreated.id}"
+                   title="${esc.html(${messages.getString("label.tips.view_profile")})}">
+                  ${esc.html(${post.userCreated.username})}
+                </a>
+              </div>
+              #set($canAnswer = $isFirstPost && $canLeavePosts)
+              #set($canEdit = false)
+              #set($canDelete = false)
+              #if(!${currentUser.anonymous})
+                #if((${currentUser.id} == ${post.userCreated.id}
+                && ${permissionTool.hasPermission($targedId.longValue(),"BRANCH","BranchPermission.EDIT_OWN_POSTS")})
+                || (${currentUser.id} != ${post.userCreated.id}
+                && ${permissionTool.hasPermission($targedId.longValue(),"BRANCH","BranchPermission.EDIT_OTHERS_POSTS")}))
+                  #set($canEdit = true)
+                #end
+                #if((${currentUser.id} == ${post.userCreated.id}
+                && ${permissionTool.hasPermission($targedId.longValue(),"BRANCH","BranchPermission.DELETE_OWN_POSTS")})
+                ||(${currentUser.id} != ${post.userCreated.id}
+                &&${permissionTool.hasPermission($targedId.longValue(),"BRANCH","BranchPermission.DELETE_OTHERS_POSTS")}))
+                  #set($canDelete = true)
+                #end
+              #end
+              <div class="btn-toolbar post-btn-toolbar pull-right">
+                  #if($canAnswer || $canEdit || $canDelete)
+                    <div class="btn-group question-btn-group">
+                        #if($canEdit)
+                          <a href="$postEditUrl" data-rel=""
+                             class="edit_button btn btn-mini" title="${esc.html(${messages.getString("label.tips.edit.$postClass")})}">
+                            <i class="icon-edit"></i>
+                            ${esc.html(${messages.getString("label.edit")})}
+                          </a>
+                        #end
+                        #if($canDelete)
+                          <a href="$postDeleteUrl" class="btn btn-mini btn-danger delete"
+                             title="${esc.html(${messages.getString("label.tips.remove.$postClass")})}"
+                             data-confirmationMessage="${esc.html(${messages.getString("label.confirm.delete.$postClass")})}">
+                            <i class="icon-remove icon-white"></i>
+                            ${esc.html(${messages.getString("label.delete")})}
+                          </a>
+                        #end
+                    </div>
+                  #end
+                </div>
+              <div class="question-date pull-right">
+                <i class="icon-calendar"></i>
+                  ${dateTool.format(${post.creationDate})}
+              </div>
+
+            </div>
+
+            <div class="content">
+              ${converter.convertBbToHtml(${post.postContent})}
+            </div>
+
+            <div class="question-footer">
+              <div class="comments">
+                #comments(${post} $canLeavePosts ${permissionTool} $targedId ${currentUser} ${postLimit})
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    #end
+  </div>
+  #topicActions($targedId ${request} ${question} ${permissionTool})
+  #if($canLeavePosts && ${postLimit} > ${postPage.getContent().size()} - 1)
+    #if(!${postDto.bodyText})
+      #set(${postDto.bodyText} = "")
+    #end
+    <input id="topicId" type="hidden" value="${question.id}"/>
+    <input id="draftId" type="hidden" value="${postDto.id}"/>
+    #if(${postDto.id} != 0)
+        <input id="savedMillis" type="hidden" value="${postDto.creationDate.millis}"/>
+    #end
+    <form id="answerForm" action="${request.contextPath}/topics/question/${question.id}"
+          method="POST" class='well anti-multipost submit-form $formVisibilityClass'>
+      <form path="topicId"/>
+      #bbeditor(${messages.getString($labelAnswerType)} "" "${esc.html(${postDto.bodyText})}" "bodyText" true ${messages.getString("label.answer.placeholder")})
+    </form>
+    <div id="antiMultiAnswers" class="well $antiMultianswerBtnVisibilityClass">
+      <button id="antiMultiAnswersBtn" class="btn btn-primary">${messages.getString($labelAnswerType)}</button>
+    </div>
+  #end
+
+  <div id="users-stats" class="well forum-user-stats-container">
+    #moderators( ${question.branch.moderatorsGroup.users} true ${request})
+    <br/>
+    <strong>${esc.html(${messages.getString("label.topic.now_browsing")})}</strong>
+    #users(${viewList} ${question.branch} ${request})
+  </div>
+
+  <form id="deleteForm"  method="post">
+    <input name="_method" value="DELETE" type="hidden">
+  </form>
+
+</div>
+</body>

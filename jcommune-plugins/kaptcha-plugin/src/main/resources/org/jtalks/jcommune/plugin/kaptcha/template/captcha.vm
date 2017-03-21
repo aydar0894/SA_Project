@@ -1,0 +1,31 @@
+#*
+
+Copyright (C) 2011  JTalks.org Team
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+*#
+<div class='control-group'>
+  <div class='controls captcha-images'>
+##  Fix for [http://jira.jtalks.org/browse/JC-2094] issue. Query t="date" added because Firefox ignores cache control
+##  headers if DOM changed by JavaScript and no way to prevent image caching.
+    <img class='captcha-img' alt='${altCaptcha}' src='${baseUrl}/plugin/${captchaPluginId}/refreshCaptcha?t=$date.getSystemTime()'/>
+##    Div can't recieve focus without tabindex attribute.
+    <div class="btn btn-default btn-captcha-refresh" tabindex="0">
+      <img class='captcha-refresh' alt='${altRefreshCaptcha}' src='${baseUrl}/resources/images/captcha-refresh.png'/>
+    </div>
+  </div>
+  <div class='controls'>
+    <input type='text' id='${formElementId}' name='userDto.captchas[${formElementId}]'
+      placeholder='${captchaLabel}' class='reg_input captcha'/>
+  </div>
+</div>
