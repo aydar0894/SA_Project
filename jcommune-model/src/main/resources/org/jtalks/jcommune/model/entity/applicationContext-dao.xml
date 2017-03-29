@@ -146,7 +146,7 @@
   <!--We're wrapping our underlying data source with lazy one so that connection is not retrieved from the pool unless-->
   <!--it's really necessary. E.g. if Hibernate hits only cache, there is no need to fetch connection, but without lazy-->
   <!--data source, it will be actually fetched if service methods are marked with @Transactional-->
-  <bean id="dataSource"
+  <bean id="jdataSource"
         class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
     <property name="targetDataSource">
       <bean class="com.mchange.v2.c3p0.ComboPooledDataSource"
@@ -173,7 +173,7 @@
   <bean id="sessionFactory"
         class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"
         depends-on="flyway_jcommune">
-    <property name="dataSource" ref="dataSource"/>
+    <property name="dataSource" ref="jdataSource"/>
     <property name="mappingResources">
       <list>
         <value>/org/jtalks/jcommune/model/entity/JCUser.hbm.xml</value>
@@ -253,7 +253,7 @@
   <bean class="org.jtalks.jcommune.model.utils.PersistenceCleanupContextShutdownHook" destroy-method="dispose"/>
 
   <bean id="flyway_common" class="org.jtalks.common.util.FlywayWrapper" init-method="migrate">
-    <property name="dataSource" ref="dataSource"/>
+    <property name="dataSource" ref="jdataSource"/>
     <property name="locations" value="org.jtalks.common.migrations"/>
     <property name="table" value="common_schema_version"/>
     <property name="enabled" value="${migrations_enabled}"/>
@@ -261,7 +261,7 @@
   <bean id="flyway_jcommune" class="org.jtalks.common.util.FlywayWrapper"
         init-method="migrate"
         depends-on="flyway_common">
-    <property name="dataSource" ref="dataSource"/>
+    <property name="dataSource" ref="jdataSource"/>
     <property name="initOnMigrate" value="true"/>
     <property name="initVersion" value="0"/>
     <property name="locations" value="org.jtalks.jcommune.migrations"/>

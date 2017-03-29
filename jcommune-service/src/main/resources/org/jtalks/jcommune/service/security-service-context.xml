@@ -74,7 +74,7 @@
 
   <!-- Retrieves, modifies and strores access control lists -->
   <bean id="aclService" class="org.jtalks.jcommune.service.security.acl.JtalksMutableAcService">
-    <constructor-arg ref="dataSource"/>
+    <constructor-arg ref="jdataSource"/>
     <constructor-arg ref="lookupStrategy"/>
     <constructor-arg ref="aclCache"/>
     <property name="classIdentityQuery" value="SELECT @@IDENTITY"/>
@@ -86,7 +86,7 @@
 
   <!-- Responsible for efficient retrieval of ACLs from database -->
   <bean id="lookupStrategy" class="org.jtalks.jcommune.service.security.acl.JtalksLookupStrategy">
-    <constructor-arg ref="dataSource"/>
+    <constructor-arg ref="jdataSource"/>
     <constructor-arg ref="aclCache"/>
     <constructor-arg ref="aclAuthorizationStrategy"/>
     <constructor-arg>

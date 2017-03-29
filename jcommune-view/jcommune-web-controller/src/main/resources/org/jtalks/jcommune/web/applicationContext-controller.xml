@@ -66,7 +66,7 @@
 
   <bean id="tokenRepository"
         class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl">
-    <property name="dataSource" ref="dataSource"/>
+    <property name="dataSource" ref="jdataSource"/>
   </bean>
 
   <bean id="loggingConfigurationFilter" class="org.jtalks.jcommune.web.filters.LoggingConfigurationFilter">
@@ -99,4 +99,5 @@
   </bean>
 
 </beans>
+
 

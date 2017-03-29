@@ -79,6 +79,10 @@ function signIn(e) {
             <div id="rememberme-area" class="control-group"> \
                 <label class="rememberme-lbl"><input name="_spring_security_remember_me" class="form-check-radio-box" type="checkbox" checked="checked">' + $labelRememberMe + '</label> \
             </div> \
+            <div class="control-group">\
+                <input type="submit" id="facebook-login" class="btn btn-primary" value="Log in via facebook" data-original-title="">\
+                <br>\
+            </div>\
             <div class="signup">\
                 <a id="dialog-signup-link" href="' + $root + '/user/new' + '">' + $labelSignupRightNow + '</a> \
             </div> \
@@ -90,7 +94,7 @@ function signIn(e) {
     var footerContent = '<input  type="submit" id="signin-submit-button" value="' + $labelSignin + '" class="btn btn-primary" name="commit"/>';
 
     var submitDialog = function (e) {
-        if(e.which == enterCode) {
+        if (e.which == enterCode) {
             /*
              Simulate submit when enter pressed on "input" element in the internet explorer.
 
@@ -101,7 +105,7 @@ function signIn(e) {
              field, but actually - form. Therefore, in the "isPreventSubmitFor($inputElement)" method will be passed
              an incorrect value. Consequently, the method will produce incorrect result.
              */
-            if($.browser.msie && $(e.target).is(':input')) {
+            if ($.browser.msie && $(e.target).is(':input')) {
                 e.preventDefault();
                 sendLoginPost(e);
             }
@@ -121,10 +125,12 @@ function signIn(e) {
             '#signin-submit-button', 'button.close'],
         handlers: {
             '#signin-modal-dialog': {'submit': sendLoginPost},
-            '#dialog-signup-link': {'click': function(e){
-                jDialog.closeDialog();
-                signUp(e);
-            }}
+            '#dialog-signup-link': {
+                'click': function (e) {
+                    jDialog.closeDialog();
+                    signUp(e);
+                }
+            }
 
         },
         dialogKeydown: submitDialog,
@@ -135,7 +141,7 @@ function signIn(e) {
 function sendEmailConfirmation(recipient) {
     $.ajax({
         type: 'GET',
-        url: $root + '/confirm?id='+recipient,
+        url: $root + '/confirm?id=' + recipient,
         success: function () {
             var message = "";
             if (resp.status == 'SUCCESS') {
@@ -166,7 +172,7 @@ function sendEmailConfirmation(recipient) {
  */
 function sendLoginPost(e) {
     var $focusedInputElement = $('input:focus');
-    if(isPreventSubmitFor($focusedInputElement)) {
+    if (isPreventSubmitFor($focusedInputElement)) {
         navigateToNext($focusedInputElement);
         return false;
     }
@@ -211,9 +217,9 @@ function sendLoginPost(e) {
                     if (userId == null) {
                         error_message = $labelLoginError;
                     } else {
-                        error_message=$labelSendConfirmationEmail
-                            .replace("{0}",'<a id="confirm_email_link" href="'+ $root + '/confirm" > ')
-                            .replace("{1}","</a>");
+                        error_message = $labelSendConfirmationEmail
+                            .replace("{0}", '<a id="confirm_email_link" href="' + $root + '/confirm" > ')
+                            .replace("{1}", "</a>");
                     }
 
                     jDialog.prepareDialog(jDialog.dialog);
@@ -252,9 +258,9 @@ function isPreventSubmitFor($inputElement) {
     var isPreventFormSubmit = false;
     var preventSubmitInputElements =
         jDialog.options.preventSubmitInputElements ? jDialog.options.preventSubmitInputElements : [];
-    for(var counter = 0; counter < preventSubmitInputElements.length; ++counter) {
+    for (var counter = 0; counter < preventSubmitInputElements.length; ++counter) {
         var inputItem = preventSubmitInputElements[counter];
-        if($inputElement.is(inputItem)) {
+        if ($inputElement.is(inputItem)) {
             isPreventFormSubmit = true;
             break;
         }
@@ -268,10 +274,10 @@ function isPreventSubmitFor($inputElement) {
  * @param $focusedInputElement current focused input element (jQuery wrapped).
  */
 function navigateToNext($focusedInputElement) {
-    for(var counter = 0; counter < jDialog.options.tabNavigation.length; ++counter) {
+    for (var counter = 0; counter < jDialog.options.tabNavigation.length; ++counter) {
         var tabNavigationItem = jDialog.options.tabNavigation[counter];
-        if($focusedInputElement.is(tabNavigationItem)) {
-            if(counter < jDialog.options.tabNavigation.length - 1) {
+        if ($focusedInputElement.is(tabNavigationItem)) {
+            if (counter < jDialog.options.tabNavigation.length - 1) {
                 jDialog.dialog.find(jDialog.options.tabNavigation[counter + 1]).focus();
             }
             break;
