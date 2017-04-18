@@ -43,9 +43,11 @@ import java.util.*;
  * @author Vitaliy Kravchenko
  * @author Eugeny Batov
  * @author Anuar Nurmakanov
+ * @author Ilgiz Zamaleev
  */
 public class TopicHibernateDao extends GenericDao<Topic> implements TopicDao {
     private static final String BRANCH = "branch";
+    private static final String TITLE = "titleStr";
     private static final String MAX_MOD_DATE = "maxModDate";
     private static final String GROUP_IDS = "groupIds";
     private static final String UNCHECKED = "unchecked";
@@ -222,6 +224,15 @@ public class TopicHibernateDao extends GenericDao<Topic> implements TopicDao {
         @SuppressWarnings(UNCHECKED)
         List<Topic> topics = (List<Topic>) query.list();
         return new PageImpl<Topic>(topics, pageRequest, totalCount);
+    }
+
+    @Override
+    public List<Topic> getTopicsByTitle(String title) {
+
+        Query query = session().getNamedQuery("getTopicsByTitle")
+                .setParameter(TITLE, "%" + title+ "%");
+
+        return query.list();
     }
 
     /**

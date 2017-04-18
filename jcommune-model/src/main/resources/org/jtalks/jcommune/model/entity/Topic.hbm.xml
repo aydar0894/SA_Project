@@ -81,6 +81,10 @@ This might be tuned further in the future if the page size itself changes.-->
         <![CDATA[SELECT COUNT(topic) FROM Topic topic WHERE topic.branch = :branch]]>
     </query>
 
+    <query name="getTopicsByTitle">
+        <![CDATA[FROM Topic topic WHERE topic.title LIKE :titleStr]]>
+    </query>
+
     <query name="getTopicsInBranch">
         <![CDATA[SELECT topic FROM Topic topic WHERE topic.branch = :branch 
                  ORDER BY sticked DESC, modificationDate DESC]]>

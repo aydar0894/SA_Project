@@ -15,8 +15,16 @@
 package org.jtalks.jcommune.web.controller;
 
 import org.apache.commons.lang3.ObjectUtils;
+import org.codehaus.jackson.JsonEncoding;
+import org.codehaus.jackson.JsonFactory;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.JsonGenerator;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.joda.time.DateTime;
+import org.jtalks.jcommune.model.dao.TopicDao;
 import org.jtalks.jcommune.model.entity.*;
+import org.jtalks.jcommune.model.utils.TopicJSON;
 import org.jtalks.jcommune.plugin.api.exceptions.NotFoundException;
 import org.jtalks.jcommune.plugin.api.web.dto.PostDto;
 import org.jtalks.jcommune.plugin.api.web.dto.TopicDto;
@@ -45,6 +53,11 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Serves topic management web requests
@@ -62,6 +75,7 @@ import javax.validation.Valid;
 public class TopicController {
 
     public static final String TOPIC_ID = "topicId";
+    public static final String TITLE = "title";
     public static final String BRANCH_ID = "branchId";
     public static final String BREADCRUMB_LIST = "breadcrumbList";
     private static final String SUBMIT_URL = "submitUrl";
@@ -75,6 +89,7 @@ public class TopicController {
     private TopicModificationService topicModificationService;
     private TopicFetchService topicFetchService;
     private TopicDraftService topicDraftService;
+    private TopicDao topicDao;
     private PostService postService;
     private BranchService branchService;
     private UserService userService;
@@ -122,7 +137,8 @@ public class TopicController {
                            TopicFetchService topicFetchService,
                            TopicDraftService topicDraftService,
                            EntityToDtoConverter converter,
-                           RetryTemplate retryTemplate) {
+                           RetryTemplate retryTemplate,
+                           TopicDao topicDao) {
         this.topicModificationService = topicModificationService;
         this.postService = postService;
         this.branchService = branchService;
@@ -134,6 +150,26 @@ public class TopicController {
         this.topicDraftService = topicDraftService;
         this.converter = converter;
         this.retryTemplate = retryTemplate;
+        this.topicDao = topicDao;
+    }
+
+    @RequestMapping(value = "/topics/checkTopic", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getAllTopics(@RequestParam(TITLE) String title) {
+
+        List<Topic> topics = topicDao.getTopicsByTitle(title);
+        JsonResponse response = getTopicsInJSON(topics);
+        return response;
+    }
+
+    private JsonResponse getTopicsInJSON(List<Topic> topics){
+        List<TopicJSON> topicJSONs = new ArrayList(topics.size());
+
+        for (Topic topic : topics) {
+            topicJSONs.add(new TopicJSON(topic.getTitle(), topic.getId()));
+        }
+
+        return new JsonResponse(JsonResponseStatus.SUCCESS, topicJSONs);
     }
 
     /**
@@ -143,6 +179,9 @@ public class TopicController {
      * @return {@code ModelAndView} object with "newTopic" view, new {@link TopicDto} and branch id
      * @throws NotFoundException when branch was not found
      */
+
+
+
     @RequestMapping(value = "/topics/new", method = RequestMethod.GET)
     public ModelAndView showNewTopicPage(@RequestParam(BRANCH_ID) Long branchId) throws NotFoundException {
 
