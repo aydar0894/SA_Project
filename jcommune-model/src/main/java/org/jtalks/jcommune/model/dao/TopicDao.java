@@ -102,7 +102,9 @@ public interface TopicDao extends Crud<Topic> {
      * @return
      */
     List<Long> getForbiddenBranchesIds(JCUser user);
-
+	
+	List<Topic> getTopicsByTitle(String title);
+	
     /**
      * Get allowed branches id for permission VIEW_TOPICS only
      *
